@@ -34,21 +34,13 @@ import GuestLayout from '../../layouts/GuestLayout'
 
 import { useRouter } from 'solito/router'
 
-interface PinInputProps {
-  refList: React.RefObject<HTMLInputElement>[]
-  setInputFocus: React.Dispatch<React.SetStateAction<number>>
-  focusedIndex: number
-  setOtpInput: (otpInput: Array<string>) => void
-  otpInput: any
-}
-
 function PinInput({
   refList,
   setInputFocus,
   focusedIndex,
   setOtpInput,
   otpInput,
-}: PinInputProps) {
+}) {
   return (
     <HStack space="xs">
       {Array.from({ length: 6 }, (_, index) => (
@@ -78,7 +70,7 @@ function PinInput({
             textAlign="center"
             maxLength={1}
             borderBottomWidth="$2"
-            onChangeText={(text: string) => {
+            onChangeText={(text) => {
               if (text.length === 1 && index < 5) {
                 refList[index + 1].current?.focus()
                 setInputFocus(index + 1)
@@ -86,7 +78,7 @@ function PinInput({
                 refList[index - 1].current?.focus()
               }
 
-              const updateOtpAtIndex = (index: number, value: string) => {
+              const updateOtpAtIndex = (index, value) => {
                 const newOtpInput = [...otpInput]
                 newOtpInput[index] = value
                 setOtpInput(newOtpInput)
@@ -240,23 +232,24 @@ const OTPSchema = z.object({
   OTP: z.string().min(6, 'OTP must be at least 6 characters in length'),
 })
 
-type OTPSchemaType = z.infer<typeof OTPSchema>
-
 export default function OtpVerification() {
   const {
     formState: { errors },
     reset,
-  } = useForm<OTPSchemaType>({
-    resolver: zodResolver(OTPSchema),
-  })
+  } =
+    useForm <
+    OTPSchemaType >
+    {
+      resolver: zodResolver(OTPSchema),
+    }
 
   const [otpInput, setOtpInput] = useState(['', '', '', '', '', ''])
-  const firstInput = useRef<HTMLInputElement>(null)
-  const secondInput = useRef<HTMLInputElement>(null)
-  const thirdInput = useRef<HTMLInputElement>(null)
-  const fourthInput = useRef<HTMLInputElement>(null)
-  const fifthInput = useRef<HTMLInputElement>(null)
-  const sixthInput = useRef<HTMLInputElement>(null)
+  const firstInput = useRef < HTMLInputElement > null
+  const secondInput = useRef < HTMLInputElement > null
+  const thirdInput = useRef < HTMLInputElement > null
+  const fourthInput = useRef < HTMLInputElement > null
+  const fifthInput = useRef < HTMLInputElement > null
+  const sixthInput = useRef < HTMLInputElement > null
 
   const refList = [
     firstInput,
@@ -267,8 +260,9 @@ export default function OtpVerification() {
     sixthInput,
   ]
 
-  const [inputFocus, setInputFocus] = useState<number>(-1)
-  const [validationError, setValidationError] = useState<string | null>(null)
+  const [inputFocus, setInputFocus] = useState < number > -1
+  const [validationError, setValidationError] =
+    (useState < string) | (null > null)
 
   const router = useRouter()
   const toast = useToast()

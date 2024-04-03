@@ -65,22 +65,22 @@ const createPasswordSchema = z.object({
     ),
 })
 
-type CreatePasswordSchemaType = z.infer<typeof createPasswordSchema>
-
 export default function CreatePassword() {
   const {
     control,
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm<CreatePasswordSchemaType>({
+  } = useForm <
+  CreatePasswordSchemaType >
+  {
     resolver: zodResolver(createPasswordSchema),
-  })
+  }
 
   const router = useRouter()
   const toast = useToast()
 
-  const onSubmit = (data: CreatePasswordSchemaType) => {
+  const onSubmit = (data) => {
     if (data.password === data.confirmpassword) {
       // Implement your own onSubmit logic and navigation logic here.
       router.replace('/login')
@@ -250,7 +250,7 @@ export default function CreatePassword() {
                           password: value,
                         })
                         return true
-                      } catch (error: any) {
+                      } catch (error) {
                         return error.message
                       }
                     },
@@ -308,7 +308,7 @@ export default function CreatePassword() {
                           confirmpassword: value,
                         })
                         return true
-                      } catch (error: any) {
+                      } catch (error) {
                         return error.message
                       }
                     },

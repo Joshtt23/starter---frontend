@@ -3,7 +3,6 @@ import 'raf/polyfill'
 import { Provider } from 'app/provider'
 import Head from 'next/head'
 import React from 'react'
-import type { SolitoAppProps } from 'solito'
 
 export const metadata = {
   title: 'Next.js head starter kit with gluestack-ui',
@@ -11,7 +10,7 @@ export const metadata = {
     'A comprehensive starter kit to kick-start your next.js application using gluestack-ui - your one-stop solution for faster, smoother, and better web development.',
 }
 
-function MyApp({ Component, pageProps }: SolitoAppProps) {
+function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>

@@ -2,7 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -15,8 +19,26 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "paths":{"@gluestack/app/*":["../../packages/app/screens/*"]},
+    "paths": {
+      "@gluestack/app/*": [
+        "../../packages/app/screens/*"
+      ]
+    },
   },
-  "include": ["next-env.d.ts", "app-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "app-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/create-password/index.jsx",
+    "pages/forgot-password/index.jsx",
+    "pages/login/index.jsx",
+    "pages/signup/index.jsx",
+    "pages/verify-otp/index.jsx",
+    "pages/index.jsx",
+    "pages/_app.jsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

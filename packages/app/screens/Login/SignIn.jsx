@@ -65,23 +65,23 @@ const signInSchema = z.object({
   rememberme: z.boolean().optional(),
 })
 
-type SignInSchemaType = z.infer<typeof signInSchema>
-
 const SignInForm = () => {
   const {
     control,
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm<SignInSchemaType>({
+  } = useForm <
+  SignInSchemaType >
+  {
     resolver: zodResolver(signInSchema),
-  })
+  }
   const [isEmailFocused, setIsEmailFocused] = useState(false)
 
   const router = useRouter()
   const toast = useToast()
 
-  const onSubmit = (_data: SignInSchemaType) => {
+  const onSubmit = (_data) => {
     toast.show({
       placement: 'bottom right',
       render: ({ id }) => {
@@ -125,7 +125,7 @@ const SignInForm = () => {
                 try {
                   await signInSchema.parseAsync({ email: value })
                   return true
-                } catch (error: any) {
+                } catch (error) {
                   return error.message
                 }
               },
@@ -165,7 +165,7 @@ const SignInForm = () => {
                     password: value,
                   })
                   return true
-                } catch (error: any) {
+                } catch (error) {
                   return error.message
                 }
               },

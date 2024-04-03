@@ -1,7 +1,7 @@
 import { createParam } from 'solito'
 import { TextLink } from 'solito/link'
 
-const { useParam } = createParam<{ id: string }>()
+const { useParam } = createParam()
 
 export function UserDetailScreen() {
   const [id] = useParam('id')

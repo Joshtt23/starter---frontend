@@ -39,8 +39,6 @@ const forgotPasswordSchema = z.object({
   email: z.string().min(1, 'Email is required').email(),
 })
 
-type forgotPasswordSchemaType = z.infer<typeof forgotPasswordSchema>
-
 function Header() {
   return (
     <HStack space="md" px="$3" py="$4.5" alignItems="center">
@@ -151,15 +149,17 @@ export default function ForgotPassword() {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm<forgotPasswordSchemaType>({
+  } = useForm <
+  forgotPasswordSchemaType >
+  {
     resolver: zodResolver(forgotPasswordSchema),
-  })
+  }
   const [isEmailFocused, setIsEmailFocused] = useState(false)
 
   const router = useRouter()
   const toast = useToast()
 
-  const onSubmit = (_data: forgotPasswordSchemaType) => {
+  const onSubmit = (_data) => {
     router.push('/verify-otp')
     reset()
     toast.show({
@@ -261,7 +261,7 @@ export default function ForgotPassword() {
                       email: value,
                     })
                     return true
-                  } catch (error: any) {
+                  } catch (error) {
                     return error.message
                   }
                 },

@@ -70,7 +70,7 @@ const signUpSchema = z.object({
     ),
   rememberme: z.boolean().optional(),
 })
-type SignUpSchemaType = z.infer<typeof signUpSchema>
+
 function SideContainerWeb() {
   return (
     <Center
@@ -136,13 +136,15 @@ const SignUpForm = () => {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm<SignUpSchemaType>({
+  } = useForm <
+  SignUpSchemaType >
+  {
     resolver: zodResolver(signUpSchema),
-  })
+  }
   const [isEmailFocused, setIsEmailFocused] = useState(false)
   const [pwMatched, setPwMatched] = useState(false)
   const toast = useToast()
-  const onSubmit = (_data: SignUpSchemaType) => {
+  const onSubmit = (_data) => {
     if (_data.password === _data.confirmpassword) {
       setPwMatched(true)
       toast.show({
@@ -202,7 +204,7 @@ const SignUpForm = () => {
                 try {
                   await signUpSchema.parseAsync({ email: value })
                   return true
-                } catch (error: any) {
+                } catch (error) {
                   return error.message
                 }
               },
@@ -241,7 +243,7 @@ const SignUpForm = () => {
                     password: value,
                   })
                   return true
-                } catch (error: any) {
+                } catch (error) {
                   return error.message
                 }
               },
@@ -284,7 +286,7 @@ const SignUpForm = () => {
                     password: value,
                   })
                   return true
-                } catch (error: any) {
+                } catch (error) {
                   return error.message
                 }
               },
