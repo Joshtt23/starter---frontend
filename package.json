@@ -13,8 +13,8 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "native": "cd apps/expo && yarn start",
-    "web": "cd apps/next && yarn next"
+    "native": "npm start --prefix apps/expo",
+    "web": "npm run next --prefix apps/next"
   },
   "resolutions": {
     "metro": "~0.76.7",
@@ -24,7 +24,6 @@
     "**/expo-router",
     "**/expo-router/**"
   ],
-  "packageManager": "yarn@3.4.1",
   "dependencies": {
     "@gluestack-style/react": "^1.0.15",
     "@gluestack-ui/config": "^1.0.3",
