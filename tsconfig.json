@@ -13,5 +13,5 @@
     // "module": "esnext", // Set depending on your target environment
     // "target": "esnext", // Set based on your execution environment capabilities
   },
-  "extends": "@expo/tsconfig.base"
+  // "extends": "@expo/tsconfig.base"
 }

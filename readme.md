@@ -1,108 +1,73 @@
-# Solito gluestack-ui Head Starter Kit 🚀
+# Solito Frontend Template
 
-A comprehensive starter kit to kick-start your next mobile application using [Expo](https://expo.io/), [Nextjs](https://nextjs.org/) and [gluestack-ui](https://ui.gluestack.io) - your one-stop solution for faster, smoother, and better mobile and web development.
+This template is designed for building cross-platform applications using Solito, enabling shared code between Next.js (web) and React Native (mobile). It's set up with TypeScript, ESLint, and Prettier to ensure a high-quality development experience. This README provides an overview and setup instructions for the frontend portion of your full-stack project.
 
-## Demo
+## Features
 
-See the live demo of this starter kit at [Demo Link](https://gluestack-ui-solito-head-starter-kit.vercel.app/).
+- **Cross-Platform Development**: Unified codebase for web and mobile apps using Next.js and React Native.
+- **TypeScript**: Full TypeScript support for type-safe coding.
+- **Code Quality**: Integrated ESLint and Prettier for linting and code formatting.
+- **Development Environment**: Configured for npm as the package manager for consistency across environments.
 
-## 👩‍💻 Built with
-
-- [gluestack-ui](https://ui.gluestack.io)
-- [solito](https://solito.dev/)
-- [Expo](https://expo.io/)
-- [Expo Router V2](https://blog.expo.dev/introducing-expo-router-v2-3850fd5c3ca1)
-- [Nextjs](https://nextjs.org/)
-- [Next Navigation](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating)
-- [TypeScript](https://www.typescriptlang.org/)
-
-## 🌟 Features
-
-- **Seamless Integration**: Get up and running with Solito(Nextjs + Expo) and gluestack-ui in no time.
-- **Modular Architecture**: Built with scalability in mind to cater to both small and large projects.
-- **Preconfigured Navigation**: Includes preconfigured navigation patterns using [Expo Router V2](https://blog.expo.dev/introducing-expo-router-v2-3850fd5c3ca1) and [Next/Navigation](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating)
-- **Theming & Styling**: Customizable themes using gluestack-ui components.
-- **Detailed Documentation**: Comprehensive documentation to guide you through every step.
-- **Extensive form handling**: Extensive implementation of handling forms and validations.
-- **Preconfigured linting rules**: Comprehensive linting rules.
-- **Preconfigured editor configurations**: Widely accepted editor configuration.
-
-## 📷 Screenshots
-
-Please find the screenshots in the `head-starter-kit-screenshots` folder.
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/)
-- [Expo CLI](https://expo.io/tools#cli)
+- Node.js (LTS version)
+- npm (Version 7 or later)
 
 ### Installation
 
-```bash
-# Clone the repository
+1. Clone the repository and navigate to the frontend directory:
 
-## Using SSH
-git clone git@github.com:gluestack/solito-head-starter-kit.git
+git clone https://github.com/Joshtt23/starter---frontend.git
+cd starter---frontend
 
-## Using HTTPS
-git clone https://github.com/gluestack/solito-head-starter-kit.git
+2. Install dependencies:
 
-# Navigate into the directory
-cd solito-head-starter-kit
+npm install
 
-# Install dependencies
-yarn install
+3. Configure environment variables:
 
-# To start expo development server
-yarn native
+- Rename `.env.example` to `.env` and update the variables according to your needs.
 
-# To start next development server
-yarn web
-```
+### Running the Application
 
-## 🌈 Applying Fonts in your application
+- **Web Application**:
 
-You already have the font loaded in your application, now you can apply the font in your application.
-For more info, check [this](https://gluestack.io/ui/docs/advanced/fonts)
+Start the Next.js server for the web app:
 
-Add the font name in the `gluestack.config.js` file in the `fonts` object.
+npm run web
 
-```javascript
-fonts: {
-  heading: "inter",
-  body: "inter",
-  mono: "monospace",
-},
-```
+- **Mobile Application**:
 
-## 📖 Documentation
+Start the Expo server for mobile development:
 
-For a deep dive into the components, structure, and configurations, please refer to our [detailed documentation](https://ui.gluestack.io/docs/getting-started/installation).
+npm run native
 
-## 🙌 Contributing
+Follow the instructions in the terminal to open your app on an emulator, simulator, or physical device.
 
-We welcome contributions! Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+## Structure
 
-If you have a suggestion that would make this better, please fork the repo, make changes and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+- `/apps/next`: Contains the Next.js application code for the web platform.
+- `/apps/expo`: Contains the React Native code for the mobile platform.
+- `/packages`: Shared logic, components, and utilities between web and mobile platforms.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+## Testing
 
-## 📄 License
+To run tests, navigate to the specific app directory (`apps/next` or `apps/expo`) and execute:
 
-This project is licensed under the [MIT License](https://opensource.org/license/mit/).
+npm run test
 
-## ❤️ Acknowledgments
+## Deployment
 
-- Thanks to the [Expo team](https://expo.io/) for creating an amazing platform.
-- Shoutout to [gluestack-ui contributors](https://gluestack.io/) for their outstanding work.
+- **Web**: Follow the deployment instructions for Vercel or your preferred hosting service for Next.js applications.
+- **Mobile**: Use Expo's build and deployment services to distribute your React Native app to iOS and Android devices.
 
-```
+## Contributing
 
-```
+Your contributions are welcome! Please refer to the project's contribution guidelines for more information on how to contribute effectively.
+
+## License
+
+This frontend template is licensed under the [MIT License](LICENSE). See the LICENSE file in the root directory for more details.
