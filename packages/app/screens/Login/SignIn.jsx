@@ -71,11 +71,9 @@ const SignInForm = () => {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm <
-  SignInSchemaType >
-  {
+  } = useForm({
     resolver: zodResolver(signInSchema),
-  }
+  })
   const [isEmailFocused, setIsEmailFocused] = useState(false)
 
   const router = useRouter()

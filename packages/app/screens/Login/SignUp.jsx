@@ -136,11 +136,9 @@ const SignUpForm = () => {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm <
-  SignUpSchemaType >
-  {
+  } = useForm({
     resolver: zodResolver(signUpSchema),
-  }
+  })
   const [isEmailFocused, setIsEmailFocused] = useState(false)
   const [pwMatched, setPwMatched] = useState(false)
   const toast = useToast()
