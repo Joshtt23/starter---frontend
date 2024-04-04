@@ -3,8 +3,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #333;
-  color: #fff;
+  background-color: var(--background-color);
+  color: var(--primary-color);
   position: sticky;
   top: 0; /* Align to the top */
   z-index: 1000; /* Ensure the header is above other content */
@@ -12,12 +12,10 @@
 }
 
 .logo a {
-  color: #fff;
+  color: var(--primary-color);
   font-weight: bold;
   font-size: 1.5rem;
   text-decoration: none;
-  position: absolute; /* Position logo absolutely within the header */
-  left: 2rem; /* Adjust based on your logo's size */
 }
 
 .navLinks {
@@ -29,67 +27,65 @@
 }
 
 .navLinks li a {
-  color: #fff;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
-.navLinks li.authLinks {
-  display: none; /* Hide auth links on large screens initially */
+.authLink {
+  margin: 0 1rem;
 }
 
 .menuButton {
   display: none;
   background: transparent;
   border: none;
-  color: #fff;
+  color: var(--primary-color);
   font-size: 2rem;
   padding-right: 3rem;
 }
 
 @media (max-width: 768px) {
-  .navLinks {
-    flex-direction: column;
-    align-items: center;
-    position: fixed;
-    right: 0;
-    top: 5vh;
-    width: 100%;
-    height: 100vh;
-    background-color: #333;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .navActive {
-    transform: translateX(0);
-  }
-
-  .navLinks li.authLink {
-    display: block; /* Show auth links within the menu */
+  .navLinks,
+  .authLinks {
+    display: none; /* Hide both nav and auth links on smaller screens */
   }
 
   .menuButton {
-    display: block;
-  }
-
-  .logo a {
-    position: relative; /* Reset logo position on smaller screens */
-    left: 0; /* Reset logo position */
+    display: block; /* Ensure menu button is displayed */
+    position: absolute; /* Position it absolutely within the header */
+    right: 0; /* Align to the right, similar to auth links on larger screens */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for exact centering */
   }
 }
 
+/* Header.module.css adjustments for larger screens */
 @media (min-width: 769px) {
   .header {
-    justify-content: center; /* Center the entire nav on larger screens */
+    display: flex;
+    justify-content: space-between; /* Space content evenly */
+    align-items: center;
+  }
+
+  .navContainer {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
   }
 
   .navLinks {
-    justify-content: center; /* Center the navigation links */
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
   }
 
-  .navLinks li.authLink {
-    display: block; /* Show auth links */
-    position: absolute; /* Position auth links absolutely within navLinks */
-    right: 2rem; /* Adjust based on your preference */
+  .authLinks {
+    display: flex; /* Keep auth links visible on larger screens */
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .menuButton {
+    display: none; /* Hide the menu button on larger screens */
   }
 }

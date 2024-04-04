@@ -5,7 +5,7 @@
 }
 
 .container {
-  min-height: calc(100vh - 250px - 100px);
+  min-height: calc(100vh - 250px - 50px);
 }
 
 /* Remove list styles for `ul` and `ol` */
@@ -25,7 +25,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
-  color: #333; /* Default text color */
+  color: var(--primary-color); /* Default text color */
 }
 
 /* Remove default border on iframes (e.g., embedded content) */

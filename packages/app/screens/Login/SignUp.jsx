@@ -82,13 +82,15 @@ function SideContainerWeb() {
         },
       }}
     >
-      <Image
-        h="$10"
-        w="$80"
-        alt="gluestack-ui Pro"
-        resizeMode="contain"
-        source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
-      />
+      <Link href="/">
+        <Image
+          h="$10"
+          w="$80"
+          alt="gluestack-ui Pro"
+          resizeMode="contain"
+          source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
+        />
+      </Link>
     </Center>
   )
 }
@@ -501,23 +503,26 @@ function SignUpFormComponent() {
     </>
   )
 }
+
 export default function SignUp() {
   return (
-    <GuestLayout>
-      <Box
-        sx={{
-          '@md': {
-            display: 'flex',
-          },
-        }}
-        flex={1}
-        display="none"
-      >
-        <SideContainerWeb />
-      </Box>
-      <Box flex={1}>
-        <SignUpFormComponent />
-      </Box>
-    </GuestLayout>
+    <>
+      <GuestLayout>
+        <Box
+          sx={{
+            '@md': {
+              display: 'flex',
+            },
+          }}
+          flex={1}
+          display="none"
+        >
+          <SideContainerWeb />
+        </Box>
+        <Box flex={1}>
+          <SignUpFormComponent />
+        </Box>
+      </GuestLayout>
+    </>
   )
 }

@@ -242,13 +242,15 @@ function SideContainerWeb() {
         _dark: { bg: '$primary500' },
       }}
     >
-      <Image
-        w="$80"
-        h="$10"
-        resizeMode="contain"
-        source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
-        alt="gluestack ui pro logo"
-      />
+      <Link href="/">
+        <Image
+          w="$80"
+          h="$10"
+          resizeMode="contain"
+          source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
+          alt="gluestack ui pro logo"
+        />
+      </Link>
     </Center>
   )
 }

@@ -1,0 +1,23 @@
+/* TODO: Set your variables */
+
+:root {
+  /* Color scheme */
+  --primary-color: #f9fafb;
+  --secondary-color: #4b5563;
+  --background-color: #7c3aed;
+  --text-color: #4b5563;
+
+  /* Font sizes */
+  --font-size-small: 0.8rem;
+  --font-size-normal: 1rem;
+  --font-size-large: 1.2rem;
+
+  /* Spacing */
+  --spacing-small: 8px;
+  --spacing-normal: 16px;
+  --spacing-large: 32px;
+
+  /* Other examples */
+  --header-height: 60px;
+  --footer-height: 100px;
+}

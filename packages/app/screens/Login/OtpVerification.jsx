@@ -236,12 +236,9 @@ export default function OtpVerification() {
   const {
     formState: { errors },
     reset,
-  } =
-    useForm <
-    OTPSchemaType >
-    {
-      resolver: zodResolver(OTPSchema),
-    }
+  } = useForm({
+    resolver: zodResolver(OTPSchema),
+  })
 
   const [otpInput, setOtpInput] = useState(['', '', '', '', '', ''])
   const firstInput = useRef < HTMLInputElement > null
