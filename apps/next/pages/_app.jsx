@@ -14,10 +14,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Solito Example App</title>
+        {/* TODO: Add default meta tags here */}
+        <title>Starter Template</title>
         <meta
           name="description"
-          content="Expo + Next.js with Solito. By Fernando Rojo."
+          content="Expo + Next.js with Solito starter template."
         />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

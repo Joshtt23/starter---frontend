@@ -1,0 +1,68 @@
+/* Reset margins and paddings for a consistent starting point */
+.global,
+.global * {
+  box-sizing: border-box; /* Ensures padding does not affect the total width or height */
+}
+
+.container {
+  min-height: calc(100vh - 250px - 100px);
+}
+
+/* Remove list styles for `ul` and `ol` */
+.global ul,
+.global ol {
+  list-style: none;
+}
+
+/* Normalize anchor tag behavior */
+.global a {
+  text-decoration: none;
+  color: inherit; /* Ensures links use the text color of their parent elements by default */
+}
+
+/* Set a consistent font style */
+.global body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #333; /* Default text color */
+}
+
+/* Remove default border on iframes (e.g., embedded content) */
+.global iframe {
+  border: 0;
+}
+
+/* Normalize button and input styles */
+.global button,
+.global input,
+.global select,
+.global textarea {
+  font-family: inherit; /* Ensures form elements use the body's font style */
+  font-size: 100%; /* Prevents small text in form elements */
+}
+
+/* Image and video elements do not exceed their container's width */
+.global img,
+.global video {
+  max-width: 100%;
+  height: auto; /* Maintains aspect ratio */
+}
+
+/* Table styles normalization */
+.global table {
+  border-collapse: collapse; /* Borders are collapsed into a single border */
+  width: 100%; /* Tables take full width */
+}
+
+/* Ensure fieldset elements take full width */
+.global fieldset {
+  width: 100%;
+  padding: 0;
+  border: 0;
+}
+
+/* Ensure details element adopts proper styling */
+.global details {
+  display: block;
+}

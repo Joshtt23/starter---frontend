@@ -1,0 +1,73 @@
+/* Footer.module.css */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+
+.logoColumn,
+.column {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  text-align: center; /* Ensure text within each column is centered */
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.column h4 {
+  margin-bottom: 10px;
+}
+
+.column a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  margin: 0.5rem 0;
+}
+
+.column a:hover {
+  text-decoration: underline;
+}
+
+.socialMedia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.socialMedia a {
+  margin: 0 0.5rem;
+}
+
+@media (min-width: 1025px) {
+  .footer {
+    flex-direction: row;
+    justify-content: center; /* Center the footer items */
+    flex-wrap: wrap; /* Allow the items to wrap as needed */
+    align-items: flex-start;
+  }
+
+  .logoColumn,
+  .column,
+  .socialMedia {
+    flex: 1 1 calc(25% - 40px); /* Adjust this value as needed */
+    align-items: center; /* Center-align the items within each column */
+    /* Ensuring even spacing and centering */
+    max-width: 200px; /* Adjust max-width for your content's needs */
+  }
+
+  .footer > * {
+    margin: 0 20px; /* Add horizontal margin between columns */
+  }
+}

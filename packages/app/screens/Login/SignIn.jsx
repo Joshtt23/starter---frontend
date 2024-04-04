@@ -381,7 +381,7 @@ const Main = () => {
           >
             Don't have an account?
           </Text>
-          <Link href="/signup">
+          <Link href="/register">
             <LinkText fontSize="$sm">Sign up</LinkText>
           </Link>
         </HStack>

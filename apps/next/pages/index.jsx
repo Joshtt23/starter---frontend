@@ -1,7 +1,11 @@
-import SplashScreen from '@gluestack/app/Login/SplashScreen'
+import LandingLayout from '../layouts/LandingLayout'
 
 const Screen = () => {
-  return <SplashScreen />
+  return (
+    <LandingLayout>
+      <h1>Home</h1>
+    </LandingLayout>
+  )
 }
 
 export default Screen

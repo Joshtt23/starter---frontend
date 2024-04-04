@@ -141,8 +141,11 @@ const SignUpForm = () => {
   })
   const [isEmailFocused, setIsEmailFocused] = useState(false)
   const [pwMatched, setPwMatched] = useState(false)
+  const [agreeToTerms, setAgreeToTerms] = useState(false)
+
   const toast = useToast()
   const onSubmit = (_data) => {
+    console.log(_data)
     if (_data.password === _data.confirmpassword) {
       setPwMatched(true)
       toast.show({
@@ -324,8 +327,11 @@ const SignUpForm = () => {
           <Checkbox
             size="sm"
             value="Remember me"
-            isChecked={value}
-            onChange={onChange}
+            isChecked={agreeToTerms}
+            onChange={(e) => {
+              console.log(e)
+              setAgreeToTerms(e)
+            }}
             alignSelf="flex-start"
             mt="$5"
           >
@@ -340,7 +346,7 @@ const SignUpForm = () => {
               }}
             >
               I accept the{' '}
-              <Link href="#">
+              <Link href="/terms-of-service">
                 <LinkText
                   sx={{
                     _ios: {
@@ -355,7 +361,7 @@ const SignUpForm = () => {
                 </LinkText>
               </Link>{' '}
               &{' '}
-              <Link href="#">
+              <Link href="/privacy-policy">
                 <LinkText
                   sx={{
                     _ios: {
@@ -378,6 +384,12 @@ const SignUpForm = () => {
         size="lg"
         mt="$5"
         onPress={handleSubmit(onSubmit)}
+        disabled={
+          !!errors.email ||
+          !!errors.password ||
+          !!errors.confirmpassword ||
+          agreeToTerms === false
+        }
       >
         <ButtonText fontSize="$sm"> SIGN UP</ButtonText>
       </Button>
@@ -452,6 +464,7 @@ function SignUpFormComponent() {
           justifyContent="center"
           space="lg"
         >
+          {/* Social login buttons */}
           <Link href="#">
             <Button action="secondary" variant="link" onPress={() => {}}>
               <ButtonIcon as={FacebookIcon} size="md" />

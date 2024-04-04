@@ -149,11 +149,9 @@ export default function ForgotPassword() {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm <
-  forgotPasswordSchemaType >
-  {
+  } = useForm({
     resolver: zodResolver(forgotPasswordSchema),
-  }
+  })
   const [isEmailFocused, setIsEmailFocused] = useState(false)
 
   const router = useRouter()
