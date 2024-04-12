@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
 import Link from 'next/link'
 import styles from '../styles/components/Header.module.css' // Adjust the path as needed
+import { useFirebase } from '../../../packages/app/provider/firebase'
+import ProfileDropdown from './ProfileDropdown'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { user } = useFirebase()
 
   return (
     <nav className={styles.header}>
@@ -37,11 +40,17 @@ function Header() {
           </li>
         </ul>
       </div>
-      <div className={styles.authLinks}>
-        {/* Authentication links */}
-        <Link href="/login">Sign In</Link>
-        <Link href="/register">Sign Up</Link>
-      </div>
+      {user ? (
+        <div className={styles.authLinks}>
+          <ProfileDropdown />
+        </div>
+      ) : (
+        <div className={styles.authLinks}>
+          {/* Authentication links */}
+          <Link href="/login">Sign In</Link>
+          <Link href="/register">Sign Up</Link>
+        </div>
+      )}
     </nav>
   )
 }

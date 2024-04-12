@@ -1,5 +1,6 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth"; // import other services as needed
+import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
+import { getAnalytics } from 'firebase/analytics'
 
 // Firebase configuration
 const firebaseConfig = {
@@ -9,13 +10,17 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
-};
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+}
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
+const app = initializeApp(firebaseConfig)
+// Initialize Firebase Analytics only on the client-side
+let analytics
+if (typeof window !== 'undefined') {
+  analytics = getAnalytics(app)
+}
 // Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
+const auth = getAuth(app)
 
-export { app, auth }; // Export any other Firebase services you use
+export { app, auth, analytics } // Export any other Firebase services you use

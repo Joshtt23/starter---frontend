@@ -3,6 +3,7 @@ import 'raf/polyfill'
 import { Provider } from 'app/provider'
 import Head from 'next/head'
 import React from 'react'
+import { useAnalytics } from '../../../packages/app/provider/firebaseAnalytics'
 import '../styles/globals.css'
 
 export const metadata = {
@@ -12,6 +13,7 @@ export const metadata = {
 }
 
 function MyApp({ Component, pageProps }) {
+  useAnalytics()
   return (
     <>
       <Head>

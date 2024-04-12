@@ -1,7 +1,8 @@
 import React from 'react'
+import LandingLayout from '../../layouts/LandingLayout'
 
 function Plans() {
-  return <div>Plans</div>
+  return <LandingLayout>Plans</LandingLayout>
 }
 
 export default Plans
