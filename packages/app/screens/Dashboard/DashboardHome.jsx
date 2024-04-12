@@ -1,15 +1,13 @@
 import React from 'react'
-import { logoutUser } from '../../provider/firebaseAuthServices'
+import { Link } from '@gluestack-ui/themed'
 
 const DashboardHome = () => {
-  const logout = async () => {
-    await logoutUser()
-  }
-
   return (
     <div>
+      <button>
+        <Link href="/">Home</Link>
+      </button>
       Dashboard Home
-      <button onClick={logout}>Logout</button>
     </div>
   )
 }

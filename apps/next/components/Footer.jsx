@@ -18,7 +18,7 @@ function Footer() {
         {/* TODO: Add your logo here*/}
         <Link href="/">
           <img
-            src="/path-to-your-logo.svg"
+            src="/logo.png"
             alt="Logo"
             className={styles.logo}
           />
