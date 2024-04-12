@@ -22,7 +22,6 @@ const ProfileDropdown = () => {
           <Box
             borderRadius="full"
             overflow="hidden"
-            bg="gray.300"
             w="40px"
             h="40px"
           >
@@ -43,7 +42,7 @@ const ProfileDropdown = () => {
           top="full"
           mt="2"
           p="2"
-          bg="white"
+          bg="black"
           boxShadow="md"
           borderRadius="md"
           zIndex="dropdown"
