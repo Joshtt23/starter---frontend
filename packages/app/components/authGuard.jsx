@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { useFirebase } from './firebase'
+import { useFirebase } from '../provider/firebase'
 import { useRouter } from 'solito/router'
-import LoadingScreen from '../screens/LoadingScreen'
+import LoadingScreen from './LoadingScreen'
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useFirebase()

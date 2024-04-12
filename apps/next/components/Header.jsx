@@ -3,7 +3,7 @@ import { FiMenu, FiX } from 'react-icons/fi'
 import Link from 'next/link'
 import styles from '../styles/components/Header.module.css' // Adjust the path as needed
 import { useFirebase } from '../../../packages/app/provider/firebase'
-import ProfileDropdown from './ProfileDropdown'
+import ProfileDropdown from 'app/components/ProfileDropdown'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

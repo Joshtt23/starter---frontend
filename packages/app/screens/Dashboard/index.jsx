@@ -4,7 +4,7 @@ import {
   trackTabChange,
   trackPageView,
 } from '../../provider/firebaseAnalytics'
-import ProtectedRoute from '../../provider/authGuard'
+import ProtectedRoute from '../../components/authGuard'
 import DashboardLayout from '../../layouts/DashboardLayout'
 import DashboardHome from './DashboardHome'
 
