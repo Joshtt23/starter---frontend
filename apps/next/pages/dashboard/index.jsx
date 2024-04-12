@@ -2,6 +2,7 @@ import React from 'react'
 import { Toast, ToastTitle, useToast } from '@gluestack-ui/themed'
 import { logoutUser } from '../../../../packages/app/provider/firebaseAuthServices'
 import { useRouter } from 'solito/router'
+import ProtectedRoute from '../../../../packages/app/provider/authGuard';
 
 function dashboard() {
   const toast = useToast()
@@ -38,8 +39,10 @@ function dashboard() {
   }
   return (
     <>
-      <div>dashboard</div>
-      <button onClick={() => signOut()}>Logout</button>
+      <ProtectedRoute>
+        <div>Dashboard</div>
+        <button onClick={() => signOut()}>Logout</button>
+      </ProtectedRoute>
     </>
   )
 }

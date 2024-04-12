@@ -1,6 +1,7 @@
 import { Stack } from 'expo-router'
 import { Provider } from 'app/provider'
 import { StatusBar } from 'expo-status-bar'
+import { protectedRoute } from 'app/provider/authGuard'
 
 export default function App() {
   return (
@@ -12,7 +13,13 @@ export default function App() {
         <Stack.Screen name="signup" options={{ headerShown: false }} />
         <Stack.Screen name="forgot-password" options={{ headerShown: false }} />
         <Stack.Screen name="verify-otp" options={{ headerShown: false }} />
-        <Stack.Screen name="create-password" options={{ headerShown: false }} />
+        <protectedRoute>
+          <Stack.Screen name="dashboard" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="create-password"
+            options={{ headerShown: false }}
+          />
+        </protectedRoute>
       </Stack>
     </Provider>
   )
