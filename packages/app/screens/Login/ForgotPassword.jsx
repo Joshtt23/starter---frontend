@@ -34,6 +34,9 @@ import { AlertTriangle } from 'lucide-react-native'
 
 import GuestLayout from '../../layouts/GuestLayout'
 import { useRouter } from 'solito/router'
+import { send } from 'process'
+
+import { resetPassword } from '../../provider/firebaseAuthServices'
 
 const forgotPasswordSchema = z.object({
   email: z.string().min(1, 'Email is required').email(),
@@ -77,13 +80,16 @@ function SideContainerWeb() {
         },
       }}
     >
-      <Image
-        resizeMode="contain"
-        w={200}
-        h="$40"
-        source={require('./assets/images/forgotPassword_web_dark.png')}
-        alt="Alternate Text"
-      />
+      {/* TODO: Add Logo */}
+      <Link href="/">
+        <Image
+          resizeMode="contain"
+          w={200}
+          h="$40"
+          source={require('./assets/images/logo.png')}
+          alt="Alternate Text"
+        />
+      </Link>
     </Center>
   )
 }
@@ -105,40 +111,44 @@ function MobileScreenImage() {
         },
       }}
     >
-      <Image
-        sx={{
-          '@base': {
-            _light: { display: 'flex' },
-            _dark: { display: 'none' },
-            mt: '$12',
-          },
-          '@md': {
-            _light: { display: 'none' },
-            _dark: { display: 'none' },
-          },
-        }}
-        source={require('./assets/images/forgotPassword_mobile_light.png')}
-        h="$40"
-        w="$48"
-        resizeMode="contain"
-        alignSelf="center"
-        alt="Forgot Password"
-      />
-      <Image
-        sx={{
-          '@base': {
-            _light: { display: 'none', _dark: { display: 'flex' } },
-            mt: '$12',
-          },
-          '@md': { display: 'none' },
-        }}
-        source={require('./assets/images/forgotPassword_mobile_dark.png')}
-        h="$40"
-        w="$48"
-        resizeMode="contain"
-        alignSelf="center"
-        alt="Forgot Password"
-      />
+      <Link href="/">
+        {/* TODO: Add Light Mode Image */}
+        <Image
+          sx={{
+            '@base': {
+              _light: { display: 'flex' },
+              _dark: { display: 'none' },
+              mt: '$12',
+            },
+            '@md': {
+              _light: { display: 'none' },
+              _dark: { display: 'none' },
+            },
+          }}
+          source={require('./assets/images/logo.png')}
+          h="$40"
+          w="$48"
+          resizeMode="contain"
+          alignSelf="center"
+          alt="Forgot Password"
+        />
+        {/* TODO: Add Dark Mode Image */}
+        <Image
+          sx={{
+            '@base': {
+              _light: { display: 'none', _dark: { display: 'flex' } },
+              mt: '$12',
+            },
+            '@md': { display: 'none' },
+          }}
+          source={require('./assets/images/logo.png')}
+          h="$40"
+          w="$48"
+          resizeMode="contain"
+          alignSelf="center"
+          alt="Forgot Password"
+        />
+      </Link>
     </Center>
   )
 }
@@ -157,8 +167,9 @@ export default function ForgotPassword() {
   const router = useRouter()
   const toast = useToast()
 
-  const onSubmit = (_data) => {
-    router.push('/verify-otp')
+  const onSubmit = async (_data) => {
+    await resetPassword(_data.email)
+    router.push('/login')
     reset()
     toast.show({
       placement: 'bottom right',

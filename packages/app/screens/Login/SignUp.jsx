@@ -33,20 +33,29 @@ import {
   InputSlot,
 } from '@gluestack-ui/themed'
 import { Link } from 'solito/link'
+import { useRouter } from 'solito/router'
 
 import { Controller, useForm } from 'react-hook-form'
 
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { AlertTriangle, EyeIcon, EyeOffIcon } from 'lucide-react-native'
+import {
+  AlertTriangle,
+  AppleIcon,
+  EyeIcon,
+  EyeOffIcon,
+  GithubIcon,
+  FacebookIcon,
+  GoogleIcon,
+} from 'lucide-react-native'
 
-import { FacebookIcon, GoogleIcon } from './assets/Icons/Social'
 import { Keyboard } from 'react-native'
 
 import GuestLayout from '../../layouts/GuestLayout'
 
 import { registerUser } from '../../provider/firebaseAuthServices'
+import { TwitterIcon } from 'lucide-react-native'
 
 const signUpSchema = z.object({
   email: z.string().min(1, 'Email is required').email(),
@@ -85,12 +94,13 @@ function SideContainerWeb() {
       }}
     >
       <Link href="/">
+        {/* TODO: Add Logo */}
         <Image
           h="$10"
           w="$80"
           alt="gluestack-ui Pro"
           resizeMode="contain"
-          source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
+          source={require('./assets/images/logo.png')}
         />
       </Link>
     </Center>
@@ -147,6 +157,8 @@ const SignUpForm = () => {
   const [pwMatched, setPwMatched] = useState(false)
   const [agreeToTerms, setAgreeToTerms] = useState(false)
 
+  const router = useRouter()
+
   const toast = useToast()
   const onSubmit = async (_data) => {
     console.log(_data)
@@ -166,6 +178,7 @@ const SignUpForm = () => {
           },
         })
         reset()
+        router.push('/dashboard')
       } catch (error) {
         console.error(error)
         toast.show({
@@ -484,15 +497,69 @@ function SignUpFormComponent() {
           justifyContent="center"
           space="lg"
         >
-          {/* Social login buttons */}
           <Link href="#">
-            <Button action="secondary" variant="link" onPress={() => {}}>
+            <Button
+              action="secondary"
+              variant="link"
+              onPress={() => {
+                socialSignIn('facebook')
+              }}
+            >
               <ButtonIcon as={FacebookIcon} size="md" />
             </Button>
           </Link>
           <Link href="#">
-            <Button action="secondary" variant="link" onPress={() => {}}>
+            <Button
+              action="secondary"
+              variant="link"
+              onPress={() => {
+                socialSignIn('google')
+              }}
+            >
               <ButtonIcon as={GoogleIcon} size="md" />
+            </Button>
+          </Link>
+          <Link href="#">
+            <Button
+              action="secondary"
+              variant="link"
+              onPress={() => {
+                socialSignIn('github')
+              }}
+            >
+              <ButtonIcon as={GithubIcon} size="md" />
+            </Button>
+          </Link>
+          <Link href="#">
+            <Button
+              action="secondary"
+              variant="link"
+              onPress={() => {
+                socialSignIn('twitter')
+              }}
+            >
+              <ButtonIcon as={TwitterIcon} size="md" />
+            </Button>
+          </Link>
+          {/* <Link href="#">
+            <Button action="secondary" variant="link" onPress={() => {socialSignIn("microsoft")}}>
+              <ButtonIcon as={MicrosoftIcon} size="md" />
+            </Button>
+          </Link>
+          <Link href="#">
+            <Button action="secondary" variant="link" onPress={() => {socialSignIn("yahoo")}}>
+              <ButtonIcon as={YahooIcon} size="md" />
+            </Button>
+          </Link> */}
+          <Link href="#">
+            <Button
+              action="secondary"
+              variant="link"
+              onPress={() => {
+                socialSignIn('apple')
+              }}
+            >
+              <ButtonIcon as={AppleIcon} size="md" />
             </Button>
           </Link>
         </HStack>

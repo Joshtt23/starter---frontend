@@ -41,6 +41,7 @@ import { AlertTriangle } from 'lucide-react-native'
 
 import GuestLayout from '../../layouts/GuestLayout'
 import { useRouter } from 'solito/router'
+import { changeUserPassword } from '../../provider/firebaseAuthServices'
 
 const createPasswordSchema = z.object({
   password: z
@@ -71,38 +72,48 @@ export default function CreatePassword() {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm <
-  CreatePasswordSchemaType >
-  {
+  } = useForm({
     resolver: zodResolver(createPasswordSchema),
-  }
+  })
 
   const router = useRouter()
   const toast = useToast()
 
-  const onSubmit = (data) => {
-    if (data.password === data.confirmpassword) {
-      // Implement your own onSubmit logic and navigation logic here.
-      router.replace('/login')
-
-      toast.show({
-        placement: 'bottom right',
-        render: ({ id }) => {
-          return (
-            <Toast nativeID={id} variant="accent" action="success">
-              <ToastTitle>Passwords matched, update successful</ToastTitle>
-            </Toast>
-          )
-        },
-      })
-      reset()
-    } else {
+  const onSubmit = async (data) => {
+    try {
+      if (data.password === data.confirmpassword) {
+        await changeUserPassword(data.password)
+        router.replace('/login')
+        toast.show({
+          placement: 'bottom right',
+          render: ({ id }) => {
+            return (
+              <Toast nativeID={id} variant="accent" action="success">
+                <ToastTitle>Passwords matched, update successful</ToastTitle>
+              </Toast>
+            )
+          },
+        })
+        reset()
+      } else {
+        toast.show({
+          placement: 'bottom right',
+          render: ({ id }) => {
+            return (
+              <Toast nativeID={id} variant="accent" action="error">
+                <ToastTitle>Passwords do not match</ToastTitle>
+              </Toast>
+            )
+          },
+        })
+      }
+    } catch (error) {
       toast.show({
         placement: 'bottom right',
         render: ({ id }) => {
           return (
             <Toast nativeID={id} variant="accent" action="error">
-              <ToastTitle>Passwords do not match</ToastTitle>
+              <ToastTitle>{error.message}</ToastTitle>
             </Toast>
           )
         },
@@ -180,13 +191,16 @@ export default function CreatePassword() {
           _dark: { bg: '$primary500' },
         }}
       >
-        <Image
-          w="$80"
-          h="$10"
-          alt="gluestack-ui Pro"
-          resizeMode="contain"
-          source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
-        />
+        <Link href="/dashboard">
+          {/* TODO: Add Logo */}
+          <Image
+            w="$80"
+            h="$10"
+            alt="gluestack-ui Pro"
+            resizeMode="contain"
+            source={require('./assets/images/logo.png')}
+          />
+        </Link>
       </Center>
     )
   }

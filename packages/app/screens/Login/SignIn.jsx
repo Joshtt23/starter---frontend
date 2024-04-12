@@ -42,15 +42,31 @@ import { z } from 'zod'
 
 import { Keyboard } from 'react-native'
 
-import { AlertTriangle, EyeIcon, EyeOffIcon } from 'lucide-react-native'
-
-import { GoogleIcon, FacebookIcon } from './assets/Icons/Social'
+import {
+  AlertTriangle,
+  AppleIcon,
+  EyeIcon,
+  EyeOffIcon,
+  GithubIcon,
+  TwitterIcon,
+  GoogleIcon,
+  FacebookIcon,
+} from 'lucide-react-native'
 
 import GuestLayout from '../../layouts/GuestLayout'
 
 import { useRouter } from 'solito/router'
 
-import { loginUser } from '../../provider/firebaseAuthServices'
+import {
+  loginUser,
+  signInWithApple,
+  signInWithFacebook,
+  signInWithGithub,
+  signInWithGoogle,
+  signInWithMicrosoft,
+  signInWithTwitter,
+  signInWithYahoo,
+} from '../../provider/firebaseAuthServices'
 
 const signInSchema = z.object({
   email: z.string().min(1, 'Email is required').email(),
@@ -83,7 +99,11 @@ const SignInForm = () => {
 
   const onSubmit = async (_data) => {
     try {
-      const user = await loginUser(_data.email, _data.password)
+      const user = await loginUser(
+        _data.email,
+        _data.password,
+        _data.rememberme
+      )
       console.log('User logged in successfully:', user)
       toast.show({
         placement: 'bottom right',
@@ -98,13 +118,12 @@ const SignInForm = () => {
       reset()
       router.push('/dashboard')
     } catch (error) {
-      setError(error.message)
       console.error('Login failed:', error.message)
       toast.show({
         placement: 'bottom right',
         render: ({ id }) => {
           return (
-            <Toast nativeID={id} variant="accent" action="fail">
+            <Toast nativeID={id} variant="accent" action="error">
               <ToastTitle>Signed in Failed, please try again.</ToastTitle>
             </Toast>
           )
@@ -263,11 +282,12 @@ function SideContainerWeb() {
       }}
     >
       <Link href="/">
+        {/* TODO: Add your logo here */}
         <Image
           w="$80"
           h="$10"
           resizeMode="contain"
-          source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
+          source={require('./assets/images/logo.png')}
           alt="gluestack ui pro logo"
         />
       </Link>
@@ -314,6 +334,41 @@ function MobileHeader() {
 }
 
 const Main = () => {
+  const socialSignIn = async (provider) => {
+    switch (provider) {
+      case 'facebook':
+        console.log('Sign in with facebook')
+        await signInWithFacebook()
+        break
+      case 'google':
+        console.log('Sign in with google')
+        await signInWithGoogle()
+        break
+      case 'github':
+        console.log('Sign in with github')
+        await signInWithGithub()
+        break
+      case 'twitter':
+        console.log('Sign in with twitter')
+        await signInWithTwitter()
+        break
+      case 'microsoft':
+        console.log('Sign in with microsoft')
+        await signInWithMicrosoft()
+        break
+      case 'yahoo':
+        console.log('Sign in with yahoo')
+        await signInWithYahoo()
+        break
+      case 'apple':
+        console.log('Sign in with apple')
+        await signInWithApple()
+        break
+      default:
+        console.log('No provider selected')
+    }
+  }
+
   return (
     <>
       <Box sx={{ '@md': { display: 'none' } }}>
@@ -380,13 +435,68 @@ const Main = () => {
           space="lg"
         >
           <Link href="#">
-            <Button action="secondary" variant="link" onPress={() => {}}>
+            <Button
+              action="secondary"
+              variant="link"
+              onPress={() => {
+                socialSignIn('facebook')
+              }}
+            >
               <ButtonIcon as={FacebookIcon} size="md" />
             </Button>
           </Link>
           <Link href="#">
-            <Button action="secondary" variant="link" onPress={() => {}}>
+            <Button
+              action="secondary"
+              variant="link"
+              onPress={() => {
+                socialSignIn('google')
+              }}
+            >
               <ButtonIcon as={GoogleIcon} size="md" />
+            </Button>
+          </Link>
+          <Link href="#">
+            <Button
+              action="secondary"
+              variant="link"
+              onPress={() => {
+                socialSignIn('github')
+              }}
+            >
+              <ButtonIcon as={GithubIcon} size="md" />
+            </Button>
+          </Link>
+          <Link href="#">
+            <Button
+              action="secondary"
+              variant="link"
+              onPress={() => {
+                socialSignIn('twitter')
+              }}
+            >
+              <ButtonIcon as={TwitterIcon} size="md" />
+            </Button>
+          </Link>
+          {/* <Link href="#">
+            <Button action="secondary" variant="link" onPress={() => {socialSignIn("microsoft")}}>
+              <ButtonIcon as={MicrosoftIcon} size="md" />
+            </Button>
+          </Link>
+          <Link href="#">
+            <Button action="secondary" variant="link" onPress={() => {socialSignIn("yahoo")}}>
+              <ButtonIcon as={YahooIcon} size="md" />
+            </Button>
+          </Link> */}
+          <Link href="#">
+            <Button
+              action="secondary"
+              variant="link"
+              onPress={() => {
+                socialSignIn('apple')
+              }}
+            >
+              <ButtonIcon as={AppleIcon} size="md" />
             </Button>
           </Link>
         </HStack>

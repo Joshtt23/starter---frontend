@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "strict": true, // Enables strict type checking options
     "noImplicitAny": true, // Raise error on expressions and declarations with an implied 'any' type.
     "noUncheckedIndexedAccess": true, // Include 'undefined' in the index signature results
