@@ -81,3 +81,4 @@ build/**
 !.yarn/sdks
 !.yarn/versions
 .env
+package-lock.json

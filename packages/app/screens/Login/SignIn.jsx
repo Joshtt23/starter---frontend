@@ -50,6 +50,8 @@ import GuestLayout from '../../layouts/GuestLayout'
 
 import { useRouter } from 'solito/router'
 
+import { loginUser } from '../../provider/firebaseAuthServices'
+
 const signInSchema = z.object({
   email: z.string().min(1, 'Email is required').email(),
   password: z
@@ -79,19 +81,37 @@ const SignInForm = () => {
   const router = useRouter()
   const toast = useToast()
 
-  const onSubmit = (_data) => {
-    toast.show({
-      placement: 'bottom right',
-      render: ({ id }) => {
-        return (
-          <Toast nativeID={id} variant="accent" action="success">
-            <ToastTitle>Signed in successfully</ToastTitle>
-          </Toast>
-        )
-      },
-    })
-    reset()
-    router.push('/dashboard')
+  const onSubmit = async (_data) => {
+    try {
+      const user = await loginUser(_data.email, _data.password)
+      console.log('User logged in successfully:', user)
+      toast.show({
+        placement: 'bottom right',
+        render: ({ id }) => {
+          return (
+            <Toast nativeID={id} variant="accent" action="success">
+              <ToastTitle>Signed in successfully</ToastTitle>
+            </Toast>
+          )
+        },
+      })
+      reset()
+      router.push('/dashboard')
+    } catch (error) {
+      setError(error.message)
+      console.error('Login failed:', error.message)
+      toast.show({
+        placement: 'bottom right',
+        render: ({ id }) => {
+          return (
+            <Toast nativeID={id} variant="accent" action="fail">
+              <ToastTitle>Signed in Failed, please try again.</ToastTitle>
+            </Toast>
+          )
+        },
+      })
+      reset()
+    }
   }
 
   const handleKeyPress = () => {

@@ -46,6 +46,8 @@ import { Keyboard } from 'react-native'
 
 import GuestLayout from '../../layouts/GuestLayout'
 
+import { registerUser } from '../../provider/firebaseAuthServices'
+
 const signUpSchema = z.object({
   email: z.string().min(1, 'Email is required').email(),
   password: z
@@ -146,21 +148,38 @@ const SignUpForm = () => {
   const [agreeToTerms, setAgreeToTerms] = useState(false)
 
   const toast = useToast()
-  const onSubmit = (_data) => {
+  const onSubmit = async (_data) => {
     console.log(_data)
     if (_data.password === _data.confirmpassword) {
       setPwMatched(true)
-      toast.show({
-        placement: 'bottom right',
-        render: ({ id }) => {
-          return (
-            <Toast nativeID={id} variant="accent" action="success">
-              <ToastTitle>Signed up successfully</ToastTitle>
-            </Toast>
-          )
-        },
-      })
-      reset()
+      try {
+        const user = await registerUser(_data.email, _data.password)
+        console.log('successfully registered:' + user)
+        toast.show({
+          placement: 'bottom right',
+          render: ({ id }) => {
+            return (
+              <Toast nativeID={id} variant="accent" action="success">
+                <ToastTitle>Signed up successfully</ToastTitle>
+              </Toast>
+            )
+          },
+        })
+        reset()
+      } catch (error) {
+        console.error(error)
+        toast.show({
+          placement: 'bottom right',
+          render: ({ id }) => {
+            return (
+              <Toast nativeID={id} variant="accent" action="error">
+                <ToastTitle>Signed up failed, please try again.</ToastTitle>
+              </Toast>
+            )
+          },
+        })
+        reset()
+      }
     } else {
       toast.show({
         placement: 'bottom right',
@@ -173,7 +192,6 @@ const SignUpForm = () => {
         },
       })
     }
-    // Implement your own onSubmit and navigation logic here.
   }
   const handleKeyPress = () => {
     Keyboard.dismiss()
