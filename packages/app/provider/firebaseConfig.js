@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app'
+import { getApps, initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getAnalytics } from 'firebase/analytics'
 
@@ -13,8 +13,13 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 }
 
+// Check that Firebase has not already been initialized
+const apps = getApps()
+let app
 // Initialize Firebase
-const app = initializeApp(firebaseConfig)
+if (!apps.length) {
+  app = initializeApp(firebaseConfig)
+}
 // Initialize Firebase Analytics only on the client-side
 let analytics
 if (typeof window !== 'undefined') {
